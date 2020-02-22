@@ -87,6 +87,12 @@ public:
 	// Task result type
 	typedef Result result_type;
 
+	// Returns estimated number of owning references to the task
+	std::size_t refcount() const
+	{
+		return internal_task!=nullptr ? internal_task->ref_count.load() : 0;
+	}
+
 	// Check if this task is not empty
 	bool valid() const
 	{
